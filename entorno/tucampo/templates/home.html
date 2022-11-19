@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}tu campo {% endblock %}
+
+{% block content %} 
+<div class="row">
+  <div class="col-sm-6">
+    <a href="{% url 'frutas' %}"><img src='{% static "IMAGES/frts.jpg" %}'  width="600px" height="300px" class="card-img-top" alt="..."></a>
+    <div class="card">
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <a href="{% url 'frutas' %}"><img src='{% static "IMAGES/verds.jpg" %}'  width="600px" height="300px" class="card-img-top" alt="..."></a>
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <a href="{% url 'frutas' %}"><img src='{% static "IMAGES/granos.jpg" %}' width="600px" height="300px"  class="card-img-top" alt="..."></a>
+    <div class="card">
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <a href="{% url 'frutas' %}"><img src='{% static "IMAGES/le.jpg" %}'  width="600px" height="300px" class="card-img-top" alt="..."></a>
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <a href="{% url 'frutas' %}"><img src='{% static "IMAGES/carnes.jpg" %}'  width="600px" height="300px" class="card-img-top" alt="..."></a>
+    <div class="card">
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <a href="{% url 'frutas' %}"><img src='{% static "IMAGES/abarr1.jpg" %}'  width="600px" height="300px" class="card-img-top" alt="..."></a>
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <a href="{% url 'frutas' %}"><img src='{% static "IMAGES/hyl.jpg" %}'  width="600px" height="300px" class="card-img-top" alt="..."></a> 
+    <div class="card">
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>  
+
+<br>
+<br>
+<br>
+<div class="container-fluid p-5 my-5 border">
+    <a href="{% url 'ofertas' %}"><img src='{% static "IMAGES/ofertas.jpg" %}' width="1250px" height="300px"></a>
+</div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <img src='{% static "IMAGES/publicidad1.jpg" %}' class="card-img-top" alt="...">
+      <div class="card">
+        <div class="card-body">
+         
+          <p class="card-text">los mejores productos del campo. producidos por manos de nuestros campesinos colombianos apoyanos.</p>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <img src='{% static "IMAGES/publicidad.jpg" %}' class="card-img-top" alt="...">
+        <div class="card-body">
+          
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+<br>
+<br>
+<br>
+<br>

@@ -1,0 +1,15 @@
+#miBarra {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-transform: uppercase;
+
+
+}
+
+
+#miBarra li {
+    display: inline;
+    margin: 0 30px;
+    color: rgb(212, 135, 222);
+}

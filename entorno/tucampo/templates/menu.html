@@ -1,0 +1,64 @@
+{% load static %}
+ <div class="container-fluid p-6  my-6 border">
+  <img src='{% static "IMAGES/tucampo.jpg"  %}' width="1310px" height="200px">
+</div>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <input class="form-control me-4" type="search" placeholder="¿Que buscas?" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-success bg-success">
+  <div class="container">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  role="button" aria-expanded="false">Categorias</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'frutas' %}">Frutas</a></li>
+        <li><a class="dropdown-item" href="{% url 'verduras' %}">Verduras</a></li>
+        <li><a class="dropdown-item" href="{% url 'leguminosas' %}">Leguminosas</a></li>
+        <li><a class="dropdown-item" href="{% url 'granos' %}">Granos</a></li>
+        <li><a class="dropdown-item" href="{% url 'carnes' %}">Carnes</a></li>
+        <li><a class="dropdown-item" href="{% url 'abarrotes' %}">Abarrotes</a></li>
+        <li><a class="dropdown-item" href="{% url 'lacteos' %}">Lacteos y Huevos</a></li>
+      </ul>
+    </li>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'ofertas' %}">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vender' %}">Vender</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'comprar' %}">Comprar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ayuda' %}">Ayuda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'quien' %}">Quienes somos</a>
+        </li>
+      </ul>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Ingresar</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'login_usu' %}">Productor</a></li>
+          <li><a class="dropdown-item" href="{% url 'login_usu' %}">Cliente</a></li>
+          
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="{% url 'login_cond' %}">Conductor</a></li>
+
+    </div>
+  </div>
+</nav>
+
+
+
+
+
