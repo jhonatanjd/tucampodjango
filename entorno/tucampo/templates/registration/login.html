@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}tu campo {% endblock %}
+
+{% block content %} 
+<div class="container" style="margin-top: 200px;">
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" class="form-control" placeholder="digite usuario"><br><br>
+        <input type="password" name="password" class="form-control" placeholder="digite su conteraseña"><br><br>
+        <button type="submit" class="btn bts-sm btn-warning">Enviar</button>    
+
+
+    </form>
+</div>
+
+{% endblock %}

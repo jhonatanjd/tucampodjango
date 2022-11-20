@@ -2,9 +2,11 @@
 from django.contrib import admin
 from django.urls import path
 from usuarios.views import *
+from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/',include('django.contrib.auth.urls')),
     path('',Home, name="home"),
     path('frutas/',frutas, name="frutas"),
     path('verduras/',verduras, name="verduras"),
@@ -38,6 +40,7 @@ urlpatterns = [
     path('add_usuario/',add_usuario, name="add_usuario"),
     path('login_usu/',login_usu, name="login_usu"),
     path('login_cond/',login_cond, name="login_cond"),
-
-
+    path('def_prueba/',def_prueba, name="def_prueba"),
+    path('logeo/',logeo, name="logeo"),
+    path('otra/',otra, name="otra"),
 ]

@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from usuarios.forms import *
 from usuarios.models import *
+from django.contrib.auth.decorators import login_required
 
 def Home (request):
     return render(request, 'home.html')
@@ -38,7 +39,7 @@ def l_carnes (request):
     return render(request, 'listas_carnes.html')
 
 def l_leguminosas (request):
-    return render(request, 'leguminosas.html')
+    return render(request, 'listas_leguminosas.html')
 
 def l_granos (request):
     return render(request, 'listas_granos.html')
@@ -151,3 +152,58 @@ def add_usuario1 (request):
         p.save()       
     messages.success(request,'usuario registrado exitosamente !!!')
     return render (request,"crear_usuario.html")
+
+def def_prueba(request):
+    if request.method == 'POST':
+        form = add_prueba(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.nombre = form.cleaned_data['first_name']
+            var.apellido = form.cleaned_data['last_name']
+            var.cedula = form.cleaned_data['identification_card']
+           
+            var.save()
+            messages.success(request,'usuario cargado exitosamente!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = add_usuario()
+    return render (request,"prueba.html",{'form': form})    
+
+def logeo(request):
+    if request.method == 'POST':
+        form = formato_logeo(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.correo = form.cleaned_data['correo']
+            var.password =make_password(form.cleaned_data['contraseña'])
+            var.save()
+            messages.success(request,'usuario cargado exitosamente!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = formato_logeo ()
+    return render (request,"prueba.html",{'form': form})
+
+
+def otra(request):
+    if request.method == 'POST':
+        form = otraprueba(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.nombre = form.cleaned_data['first_name']
+            var.apellido = form.cleaned_data['last_name']
+            var.cedula = form.cleaned_data['identification_card']
+            var.direccion = form.cleaned_data['direction']
+            var.telefono = form.cleaned_data['phone']
+            var.celular = form.cleaned_data['cell_phone']
+            var.email = form.cleaned_data['email']
+            var.ciudad = form.cleaned_data['city']
+            var.password =make_password(form.cleaned_data['password'])
+            var.save()
+            messages.success(request,'usuario cargado exitosamente!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = otraprueba ()
+    return render (request,"prueba.html",{'form': form})

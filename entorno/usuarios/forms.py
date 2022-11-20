@@ -18,3 +18,20 @@ class add_productor(forms.ModelForm):
     class Meta:
         model = producer
         fields = '__all__'
+
+class add_prueba(forms.ModelForm):
+    class Meta:
+        model = tabla_prueba
+        fields = '__all__'  
+
+class formato_logeo(forms.ModelForm):
+    class Meta:
+        model = login
+        fields = '__all__'
+
+class otraprueba(forms.ModelForm):
+    class Meta:
+        model = distribuidor
+        fields = '__all__'
+        
+                      

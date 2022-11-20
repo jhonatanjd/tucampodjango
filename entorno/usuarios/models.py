@@ -67,3 +67,23 @@ class tabla_prueba(models.Model):
     identification_card = models.CharField(max_length=10)
     class Meta:
         db_table ='tabla_prueba'
+
+class login(models.Model):
+    correo = models.CharField(max_length=50)
+    contraseña = models.CharField(max_length=50)
+    
+    class Meta:
+        db_table ='login'
+
+class distribuidor(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    identification_card = models.CharField(max_length=10)
+    direction =  models.CharField(max_length=50)
+    phone = models.CharField(max_length=10)
+    cell_phone = models.CharField(max_length=11)
+    email = models.CharField(max_length=254)
+    city = models.CharField(max_length=50)
+    password = models.CharField(max_length=254)   
+    class Meta:
+        db_table ='distribuidor'
