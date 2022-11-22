@@ -43,4 +43,12 @@ urlpatterns = [
     path('def_prueba/',def_prueba, name="def_prueba"),
     path('logeo/',logeo, name="logeo"),
     path('otra/',otra, name="otra"),
-]
+    path('otra/',otra, name="otra"),
+    path('validacion_manual/',validacion_manual, name="validacion_manual"),
+    path('logueo_manual/',logueo_manual, name="logueo_manual"),
+    path('logueo_exitosos/',logueo_exitosos, name="logueo_exitosos"),
+    path('registro/',registro, name="registro"),
+    path('soporte/',soporte, name="soporte"),
+    
+    
+    ]       

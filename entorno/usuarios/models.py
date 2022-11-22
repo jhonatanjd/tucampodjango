@@ -33,19 +33,20 @@ class producer(models.Model):
     class Meta:
         db_table ='productor'
 
-VEHICLE_TYPE = {
-    ('Pickup', 'Pickup'),
-    ('Luv','Luv'),
-    ('Turbo', 'Turbo'),
-    ('Camion sencillo','Camion'),
-    ('Doble troque', 'Doble troque'),
-    ('Cuatro manos','Cuatro manos'),
-    ('Minimula', 'Minimula'),
-    ('Tractomula 2 troques','Tractomula 2 troques'),
-    ('Tractomula 3 troques','Tractomula 3 troques'),
-} 
+
+ 
 
 class driver(models.Model):
+    VEHICLE_TYPE =( 
+        ('Pickup', 'Pickup'),
+        ('Luv','Luv'),
+        ('Turbo', 'Turbo'),
+        ('Camion sencillo','Camion'),
+        ('Doble troque', 'Doble troque'),
+        ('Cuatro manos','Cuatro manos'),
+        ('Minimula', 'Minimula'),
+        ('Tractomula 2 troques','Tractomula 2 troques'),
+        ('Tractomula 3 troques','Tractomula 3 troques'))
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     identification_card = models.CharField(max_length=10)
@@ -60,6 +61,16 @@ class driver(models.Model):
 
     class Meta:
         db_table ='driver'
+
+class Person(models.Model):
+    SHIRT_SIZES = (
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+    )
+    name = models.CharField(max_length=60)
+    shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
+
 
 class tabla_prueba(models.Model):
     first_name = models.CharField(max_length=50)
@@ -87,3 +98,18 @@ class distribuidor(models.Model):
     password = models.CharField(max_length=254)   
     class Meta:
         db_table ='distribuidor'
+
+
+class registro (models.Model):
+    username = models.CharField(max_length=254, unique=True)
+    password = models.CharField(max_length=254)
+
+    class Meta:
+        db_table ='registro'
+
+class soporte(models.Model):
+    correo = models.CharField(max_length=50)
+    comentario = models.CharField(max_length=500)        
+
+    class Meta:
+        db_table ='soporte'

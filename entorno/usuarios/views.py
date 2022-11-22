@@ -167,7 +167,7 @@ def def_prueba(request):
         else:
          messages.warning(request,'Usuario no cargado')
     else:
-        form = add_usuario()
+        form = add_usuario() 
     return render (request,"prueba.html",{'form': form})    
 
 def logeo(request):
@@ -207,3 +207,67 @@ def otra(request):
     else:
         form = otraprueba ()
     return render (request,"prueba.html",{'form': form})
+
+
+def validacion_manual(request):
+    if request.method == 'POST':
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+
+        if distribuidor.objects.filter(email=email).exists():
+            logueo=distribuidor.objects.get(email=email)
+            passsword=check_password(password,logueo.password)
+            
+            
+            if passsword == False:
+                messages.error(request,'usuario o contraseña erronea')
+                return render (request, 'logueo_manual.html')
+            else:
+                request.session['seguridad'] == True
+                return render (request, "logueo_exitosos.html")
+
+        else:
+            messages.error(request,'usuario o contraseña erronea')
+            return render (request, 'logueo_manual.html')
+
+def logueo_manual (request):
+    return render (request, 'logueo_manual.html')            
+
+
+def logueo_exitosos (request):
+    return render (request, 'logueo_exitosos.html')
+
+def registro(request):
+    if request.method == 'POST':
+        form = form_registro(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.username = form.cleaned_data['username']
+            var.password =make_password(form.cleaned_data['password'])
+            var.save()
+            messages.success(request,'usuario cargado exitosamente!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = form_registro ()
+    return render (request,"registro.html",{'form': form})
+
+def soporte (request):
+    if request.method == 'POST':
+        form = form_soporte(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.correo = form.cleaned_data['correo']
+            var.comentario = form.cleaned_data['comentario']
+            
+           
+            var.save()
+            messages.success(request,'comentario cargado!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = form_soporte() 
+      
+
+
+    return render (request,"ayuda.html",{'form': form})

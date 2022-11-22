@@ -34,4 +34,15 @@ class otraprueba(forms.ModelForm):
         model = distribuidor
         fields = '__all__'
         
-                      
+class form_registro(forms.ModelForm):
+    class Meta:
+        model = registro
+        fields = '__all__'
+
+
+class form_soporte(forms.ModelForm):
+    class Meta:
+        model = soporte
+        fields = '__all__'
+
+                              

@@ -20,6 +20,14 @@
         {% block content %}  
         
         {% endblock %}
-  
+        <footer class="bg-dark text-center text-lg-start" id="footer" style="color:white">
+            <div class="text-center p-3" style="background-color: black;">
+                &copy; {% now "y " %} copyright:
+                <a class="text-light" style="text-decoration: none;">
+                    <span>{% block footer %}  {% endblock footer %}www.tucampo.com.co</span>
+                </a>
+            </div>
+
+        </footer>
     </body>
 </html>
