@@ -1,12 +1,5 @@
 from django.db import models
 
-class Usuario(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    usuario = models.CharField(max_length=100)
-    edad = models.BigIntegerField
-    password = models.CharField(max_length=254)
-
 class client(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -32,9 +25,6 @@ class producer(models.Model):
     password = models.CharField(max_length=254)   
     class Meta:
         db_table ='productor'
-
-
- 
 
 class driver(models.Model):
     VEHICLE_TYPE =( 
@@ -71,34 +61,12 @@ class Person(models.Model):
     name = models.CharField(max_length=60)
     shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
 
-
-class tabla_prueba(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    identification_card = models.CharField(max_length=10)
-    class Meta:
-        db_table ='tabla_prueba'
-
 class login(models.Model):
     correo = models.CharField(max_length=50)
     contraseña = models.CharField(max_length=50)
     
     class Meta:
         db_table ='login'
-
-class distribuidor(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    identification_card = models.CharField(max_length=10)
-    direction =  models.CharField(max_length=50)
-    phone = models.CharField(max_length=10)
-    cell_phone = models.CharField(max_length=11)
-    email = models.CharField(max_length=254)
-    city = models.CharField(max_length=50)
-    password = models.CharField(max_length=254)   
-    class Meta:
-        db_table ='distribuidor'
-
 
 class registro (models.Model):
     username = models.CharField(max_length=254, unique=True)
@@ -107,9 +75,22 @@ class registro (models.Model):
     class Meta:
         db_table ='registro'
 
+    def __str__(self):
+        return self.username    
+
 class soporte(models.Model):
     correo = models.CharField(max_length=50)
     comentario = models.CharField(max_length=500)        
 
     class Meta:
         db_table ='soporte'
+
+class productos (models.Model):
+    nombre = models.CharField(max_length=254, unique=True)
+    categoria = models.CharField(max_length=254)
+
+    class Meta:
+        db_table ='productos'
+
+    def __str__(self):
+        return self.nombre       

@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}tu campo {% endblock %}
+{% block title %}logueo manual{% endblock %}
 
 {% block content %} 
+
+{% if messages %}
+{% for messages in messages %}
+<div class="alert-success" {{ mesage.tags }}> {{message}}</div>
+{% endfor %}
+{% endif %}
+ <br>
 <h1 class="text-center">BIENVENIDOS LOGIN</h1>
 <div class="container">
     <div class="card">
         <div class="card-body">
             
-            <form method="post" action="/validacion_manual/">
+            <form method="post" action="/validacion_manual/" >
             {% csrf_token %}
             <input type="text" name="email" class="form-control" placeholder="digite el correo"><br><br>
             <input type="password" name="password" class="form-control" placeholder="digite su contraseña"><br><br>
-            <button type="submit" class="btn bts-sm btn-warning">Enviar</button>    
+            <button type="submit" class="btn bts-sm btn-warning">Ingresar</button>    
             </form>
 
     
-            <p>¿no tienes cuenta?<a class="link" href="{% url 'registro' %}"> registrarte</a></p>
+            <p>¿no tienes cuenta?<a class="link" href="{% url 'registro_func' %}"> registrate</a></p>
             <p>al registrarte, aceptas nuestras condiciones de uso y políticas de privacidad.</p>
         </div>
     </div>
 </div>
+
 {% endblock %}

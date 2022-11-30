@@ -3,12 +3,7 @@
   <img src='{% static "IMAGES/tucampo.jpg"  %}' width="1310px" height="200px">
 </div>
 <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <form class="d-flex">
-      <input class="form-control me-4" type="search" placeholder="¿Que buscas?" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Buscar</button>
-    </form>
-  </div>
+ 
 </nav>
 <nav class="navbar navbar-expand-lg navbar-success bg-success">
   <div class="container">
@@ -24,7 +19,7 @@
         <li><a class="dropdown-item" href="{% url 'lacteos' %}">Lacteos y Huevos</a></li>
       </ul>
     </li>
-    <div class="collapse navbar-collapse" id="navbarText">
+  <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'ofertas' %}">Ofertas</a>
@@ -46,19 +41,93 @@
         </li>
       </ul>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Ingresar</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{% url 'logueo_manual' %}">Productor</a></li>
-          <li><a class="dropdown-item" href="{% url 'login_usu' %}">Cliente</a></li>
+          <li><a class="dropdown-item" ></a></li>
+          <li><a class="dropdown-item" ></a></li>
           
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="{% url 'login_cond' %}">Conductor</a></li>
-
+          <li><a class="dropdown-item" ></a></li>
+        </ul>
+      </li>
     </div>
   </div>
 </nav>
 
-
-
-
+<strong>
+<nav class="navbar navbar-expand-lg navbar--success bg-success">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'ofertas' %}">Ofertas</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vender' %}">Vender</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'comprar' %}">Comprar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ayuda' %}">Ayuda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'quien' %}">Quienes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'salir' %}">Salir</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registro_func' %}">Registro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registro_func' %}">Registro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logueo_manual' %}">Ingresar</a>
+        </li>
+        {% endif %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categorias
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'frutas' %}">Frutas</a></li>
+            <li><a class="dropdown-item" href="{% url 'verduras' %}">Verduras</a></li>
+            <li><a class="dropdown-item" href="{% url 'leguminosas' %}">Leguminosas</a></li>
+            <li><a class="dropdown-item" href="{% url 'granos' %}">Granos</a></li>
+            <li><a class="dropdown-item" href="{% url 'carnes' %}">Carnes</a></li>
+            <li><a class="dropdown-item" href="{% url 'abarrotes' %}">Abarrotes</a></li>
+            <li><a class="dropdown-item" href="{% url 'lacteos' %}">Lacteos y huevos</a></li>
+          </ul>
+        </li><hr>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ingresar
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'logueo_manual' %}">Eres cliente</a></li>
+            <li><a class="dropdown-item" href="{% url 'verduras' %}">Eres agricultor o productor</a></li>
+            <li><a class="dropdown-item" href="{% url 'leguminosas' %}">Eres conductor</a></li>
+ 
+          </ul>
+        </li>
+      </ul>
+      <form action="/buscador/" method="get" class="d-flex">
+        <input class="form-control me-2" type="text" name="prd" placeholder="¿Que buscas?" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>
+</strong>
 

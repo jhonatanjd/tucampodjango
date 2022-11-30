@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from usuarios.forms import *
 from usuarios.models import *
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 def Home (request):
     return render(request, 'home.html')
@@ -48,13 +49,17 @@ def l_verduras (request):
     return render(request, 'listas_verduras.html')
 
 def l_frutas (request):
-    return render(request, 'l_frutas.html')    
+    return render(request, 'l_frutas.html') 
 
+#@login_required
 def vender (request):
-    return render(request, 'vender.html')        
+    if "seguridad" in request.session:
+        return render(request, 'vender.html')
+    else:
+        return render(request, 'logueo_manual.html')      
+#@login_required         
 def comprar (request):
     return render(request, 'comprar.html') 
-
 
 def quien (request):
     return render(request, 'quienesSomos.html')
@@ -73,9 +78,6 @@ def ofertas (request):
 
 def ayuda (request):
     return render(request, 'ayuda.html')
-
-def compra (request):
-    return render(request, 'compra.html')   
 
 def login_usu (request):
     return render(request, 'login_usuarios.html') 
@@ -108,7 +110,6 @@ def agregar_usuario(request):
         form = add_usuario()
     return render (request,"registrar_usuario_manual.html",{'form': form})
             
-
 def agregar_cond(request):
     if request.method == 'POST':
         form = add_conductor(request.POST)
@@ -133,46 +134,9 @@ def agregar_cond(request):
         form=add_conductor()
     return render (request,"registrar_conductor.html",{'form': form})
 
-def add_usuario1 (request):
+def logueo(request):
     if request.method == 'POST':
-        nom=request.POST.get("firts_name")
-        apell=request.POST.get("last_name")
-        ide=request.POST.get("identification_card")
-        dir=request.POST.get("direction")
-        phone=request.POST.get("phone")
-        cell=request.POST.get("cell_phone")
-        email=request.POST.get("email")
-        veh=request.POST.get("vehicle_type")
-        city=request.POST.get("city")
-        year=request.POST.get("year")
-        passw=request.POST.get("password")
-        passw= make_password("passw")
-        p=driver(first_name=nom, last_name=apell, identification_card=ide, direction=dir, phone=phone, cell_phone=cell, email=email, 
-        vehicle_type=veh, city=city, year=year, password=passw)
-        p.save()       
-    messages.success(request,'usuario registrado exitosamente !!!')
-    return render (request,"crear_usuario.html")
-
-def def_prueba(request):
-    if request.method == 'POST':
-        form = add_prueba(request.POST)
-        if form.is_valid():
-            var = form.save(commit=False)
-            var.nombre = form.cleaned_data['first_name']
-            var.apellido = form.cleaned_data['last_name']
-            var.cedula = form.cleaned_data['identification_card']
-           
-            var.save()
-            messages.success(request,'usuario cargado exitosamente!!!')
-        else:
-         messages.warning(request,'Usuario no cargado')
-    else:
-        form = add_usuario() 
-    return render (request,"prueba.html",{'form': form})    
-
-def logeo(request):
-    if request.method == 'POST':
-        form = formato_logeo(request.POST)
+        form = formato_logueo(request.POST)
         if form.is_valid():
             var = form.save(commit=False)
             var.correo = form.cleaned_data['correo']
@@ -182,62 +146,16 @@ def logeo(request):
         else:
          messages.warning(request,'Usuario no cargado')
     else:
-        form = formato_logeo ()
+        form = formato_logueo ()
     return render (request,"prueba.html",{'form': form})
-
-
-def otra(request):
-    if request.method == 'POST':
-        form = otraprueba(request.POST)
-        if form.is_valid():
-            var = form.save(commit=False)
-            var.nombre = form.cleaned_data['first_name']
-            var.apellido = form.cleaned_data['last_name']
-            var.cedula = form.cleaned_data['identification_card']
-            var.direccion = form.cleaned_data['direction']
-            var.telefono = form.cleaned_data['phone']
-            var.celular = form.cleaned_data['cell_phone']
-            var.email = form.cleaned_data['email']
-            var.ciudad = form.cleaned_data['city']
-            var.password =make_password(form.cleaned_data['password'])
-            var.save()
-            messages.success(request,'usuario cargado exitosamente!!!')
-        else:
-         messages.warning(request,'Usuario no cargado')
-    else:
-        form = otraprueba ()
-    return render (request,"prueba.html",{'form': form})
-
-
-def validacion_manual(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-
-        if distribuidor.objects.filter(email=email).exists():
-            logueo=distribuidor.objects.get(email=email)
-            passsword=check_password(password,logueo.password)
-            
-            
-            if passsword == False:
-                messages.error(request,'usuario o contraseña erronea')
-                return render (request, 'logueo_manual.html')
-            else:
-                request.session['seguridad'] == True
-                return render (request, "logueo_exitosos.html")
-
-        else:
-            messages.error(request,'usuario o contraseña erronea')
-            return render (request, 'logueo_manual.html')
 
 def logueo_manual (request):
     return render (request, 'logueo_manual.html')            
 
-
 def logueo_exitosos (request):
     return render (request, 'logueo_exitosos.html')
 
-def registro(request):
+def registro_func(request):
     if request.method == 'POST':
         form = form_registro(request.POST)
         if form.is_valid():
@@ -258,16 +176,72 @@ def soporte (request):
         if form.is_valid():
             var = form.save(commit=False)
             var.correo = form.cleaned_data['correo']
-            var.comentario = form.cleaned_data['comentario']
-            
-           
+            var.comentario = form.cleaned_data['comentario'] 
             var.save()
             messages.success(request,'comentario cargado!!!')
         else:
          messages.warning(request,'Usuario no cargado')
     else:
         form = form_soporte() 
-      
-
-
     return render (request,"ayuda.html",{'form': form})
+
+def login (request):
+    return render(request, 'registration/login.html') 
+
+def validacion_manual (request):
+    if request.method == 'POST':
+        user=request.POST.get('username')
+        passw=request.POST.get('password')
+
+        if registro.objects.filter(username=user).exists():
+            logueo=registro.objects.get(username=user)
+            passw=check_password(passw,logueo.password)
+            if passw ==False:
+                messages.error(request,'usuario o contraseña erronea')
+                return render(request,'frutas.html')
+            else:
+                request.session['seguridad']=True
+                return render (request,'logueo_exitosos.html')
+
+        else:
+            messages.error(request,'usuario o contraseña erronena')
+            return render(request,'home.html')
+
+def salir (request):
+    del request.session['seguridad']
+    return render(request,'logueo_manual.html')
+
+def buscador(request):
+    if request.GET["prd"]:
+        #mensaje="articulo buscado: %r" %request.GET["prd"]
+        busqueda=request.GET["prd"]
+        if len(busqueda)>25:
+            mensaje="texto de busqueda demasiado largo"
+        else:    
+            prod=productos.objects.filter(nombre__icontains=busqueda)
+            return render(request, "resultados_busqueda.html", {"productos":prod, "query":busqueda})
+    else:
+        mensaje="no has introducido nada"
+        return HttpResponse(mensaje)                      
+ 
+def registro_productos (request):
+    if request.method == 'POST':
+        form = form_registro_productos(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.name = form.cleaned_data['nombre']
+            var.categoria = form.cleaned_data['categoria'] 
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_productos() 
+    return render (request,'registrar_productos.html',{'form': form})  
+
+
+def list_tusproductos (request):
+    return render (request, 'tus_productos.html') 
+
+def listas (request):
+    return render (request, 'lista.html')          

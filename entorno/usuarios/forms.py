@@ -19,19 +19,9 @@ class add_productor(forms.ModelForm):
         model = producer
         fields = '__all__'
 
-class add_prueba(forms.ModelForm):
-    class Meta:
-        model = tabla_prueba
-        fields = '__all__'  
-
-class formato_logeo(forms.ModelForm):
+class formato_logueo(forms.ModelForm):
     class Meta:
         model = login
-        fields = '__all__'
-
-class otraprueba(forms.ModelForm):
-    class Meta:
-        model = distribuidor
         fields = '__all__'
         
 class form_registro(forms.ModelForm):
@@ -39,10 +29,14 @@ class form_registro(forms.ModelForm):
         model = registro
         fields = '__all__'
 
-
 class form_soporte(forms.ModelForm):
     class Meta:
         model = soporte
         fields = '__all__'
+
+class form_registro_productos(forms.ModelForm):
+    class Meta:
+        model = productos
+        fields = '__all__'        
 
                               
