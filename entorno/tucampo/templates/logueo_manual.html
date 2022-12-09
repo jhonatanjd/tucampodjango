@@ -5,21 +5,19 @@
 
 {% block content %} 
 
-{% if messages %}
-{% for messages in messages %}
 <div class="alert-success" {{ mesage.tags }}> {{message}}</div>
-{% endfor %}
-{% endif %}
+
+
  <br>
-<h1 class="text-center">BIENVENIDOS LOGIN</h1>
+<h1 class="text-center">SIGN IN</h1>
 <div class="container">
     <div class="card">
         <div class="card-body">
             
             <form method="post" action="/validacion_manual/" >
             {% csrf_token %}
-            <input type="text" name="email" class="form-control" placeholder="digite el correo"><br><br>
-            <input type="password" name="password" class="form-control" placeholder="digite su contraseña"><br><br>
+            <input type="text" name="email" class="form-control" placeholder="digita tu correo"><br><br>
+            <input type="password" name="password" class="form-control" placeholder="digite tu contraseña"><br><br>
             <button type="submit" class="btn bts-sm btn-warning">Ingresar</button>    
             </form>
 
@@ -29,5 +27,12 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
 
 {% endblock %}

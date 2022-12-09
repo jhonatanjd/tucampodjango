@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 class client(models.Model):
@@ -61,22 +62,55 @@ class Person(models.Model):
     name = models.CharField(max_length=60)
     shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
 
-class login(models.Model):
-    correo = models.CharField(max_length=50)
-    contraseña = models.CharField(max_length=50)
+CIUDADS ={
+    ('bogota','bogota'),
+    ('medellin','medellin'),
+    ('cali','cali'),
+    ('boyaca','boyaca'),
+    ('cucuta','cucuta'),
+    ('leticia','leticia'),
+    ('rionegro','rionegro'),
+    ('apartado','apartado'),
+    ('turbo','turbo'),
+    ('caucasia','caucasia'),
+    ('arauca','arauca'),
+    ('barranquilla','barranquilla'),
+    ('sabanalarga','sabanalarga'),
+    ('girardot','girardot'),
+    ('fusagasuga','fusagasuga'),
+    ('zipaquira','zipaquira'),
+    ('facatativa','facatativa'),
+    ('cartagena','cartagena'),
+    ('magangue','magangue'),
+    ('el carmen de bolivar','el carmen de bolivar'),
+    ('tunja','tunja'),
     
-    class Meta:
-        db_table ='login'
+}
+ROL ={
+    ('eres cliente','eres cliente'),
+    ('eres productor','eres productor'),
+    ('eres conductor','eres conducto')
+    
+}    
 
 class registro (models.Model):
     username = models.CharField(max_length=254, unique=True)
     password = models.CharField(max_length=254)
+    rol = models.CharField(max_length=254, choices=ROL)
+    nombres = models.CharField(max_length=254)
+    apellidos = models.CharField(max_length=254)
+    cedula = models.CharField(max_length=254)
+    direcion = models.CharField(max_length=254)
+    telefono = models.CharField(max_length=254)
+    celular = models.CharField(max_length=254)
+    correo = models.CharField(max_length=254)
+    ciudad= models.CharField(max_length=40, choices=CIUDADS)
 
     class Meta:
         db_table ='registro'
 
     def __str__(self):
-        return self.username    
+        return self.username      
 
 class soporte(models.Model):
     correo = models.CharField(max_length=50)
@@ -85,12 +119,40 @@ class soporte(models.Model):
     class Meta:
         db_table ='soporte'
 
+
+
+class inventario (models.Model):
+    producto = models.CharField(max_length=254,choices=PRODUCTS_FRUTAS)
+    cantidad = models.CharField(max_length=254, choices=CANTIDAS)
+    precio_kgs = models.CharField(max_length=254)
+    precio_total = models.CharField(max_length=254)
+    ciudad = models.CharField(max_length=254, choices=CIUDADS)
+    fecha_disponible = models.CharField(max_length=254)
+    ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
+    descripcion = models.CharField(max_length=254)
+    estado = models.CharField(max_length=254, choices=ESTADO)
+
+    class Meta:
+        db_table ='inventario'
+
+    def __str__(self):
+        return self.producto                               
+
 class productos (models.Model):
-    nombre = models.CharField(max_length=254, unique=True)
-    categoria = models.CharField(max_length=254)
+    producto = models.CharField(max_length=254,choices=PRODUCTS_FRUTAS)
+    cantidad = models.CharField(max_length=254, choices=CANTIDAS)
+    precio_kgs = models.CharField(max_length=254)
+    precio_total = models.CharField(max_length=254)
+    ciudad = models.CharField(max_length=254, choices=CIUDADS)
+    fecha_disponible = models.CharField(max_length=254)
+    ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
+    descripcion = models.CharField(max_length=254)
+    estado = models.CharField(max_length=254, choices=ESTADO)
 
     class Meta:
         db_table ='productos'
 
     def __str__(self):
-        return self.nombre       
+        return self.producto 
+
+           

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}tu campo {% endblock %}
+
+{% block content %} 
+<br>
+<br>
+<h1><span>que tipo de producto vas a registrar</span> </h1>
+<br>
+<br>
+<div class="row">
+    <div class="col-sm-2">
+      <a href="{% url 'registro_productos' %}"><img src='{% static "IMAGES/pera.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="..."><h3>Frutas</h3></a>
+      <div class="card">
+        <div class="card-body">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      
+        <a href="{% url 'registro_productos' %}"><img src='{% static "IMAGES/manzana.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="..."><h3>Verduras</h3></a>
+        <div class="card-body">
+        </div>
+      
+    </div>
+    <div class="col-sm-2">
+     
+        <a href="{% url 'registro_productos' %}"><img src='{% static "IMAGES/mango.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="..."><h3>Leguminosas</h3></a>
+        <div class="card-body">
+        </div>
+      
+    </div>
+    <div class="col-sm-2">
+      
+        <a href="{% url 'registro_productos' %}"><img src='{% static "IMAGES/piña.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="piña"><h3>Granos</h3></a>
+        <div class="card-body">
+        </div>
+      
+    </div>
+    <div class="col-sm-2">
+      
+        <a href="{% url 'registro_productos' %}"><img src='{% static "IMAGES/mango.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="..."><h3>Carnes</h3></a>
+        <div class="card-body">
+        </div>
+      
+    </div>
+    <div class="col-sm-2">
+      
+        <a href="{% url 'registro_productos' %}"><img src='{% static "IMAGES/mango.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="..."><h3>Abarrotes</h3></a>
+        <div class="card-body">
+        </div>
+      
+    </div>
+</div>
+{% endblock %} 

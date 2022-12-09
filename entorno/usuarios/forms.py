@@ -1,8 +1,9 @@
 from django import forms
-#from .models import tabla_prueba, driver, client, producer
 from .models import *
-#from django.db import models
-
+#from django.forms import ModelForm
+#from .models import tabla_prueba, driver, client, producer
+#from django.db import model
+#from django.forms import ModelForm
 
 class add_conductor(forms.ModelForm):
     class Meta:
@@ -18,12 +19,7 @@ class add_productor(forms.ModelForm):
     class Meta:
         model = producer
         fields = '__all__'
-
-class formato_logueo(forms.ModelForm):
-    class Meta:
-        model = login
-        fields = '__all__'
-        
+    
 class form_registro(forms.ModelForm):
     class Meta:
         model = registro
@@ -37,6 +33,14 @@ class form_soporte(forms.ModelForm):
 class form_registro_productos(forms.ModelForm):
     class Meta:
         model = productos
-        fields = '__all__'        
+        fields = '__all__' 
+class form_registro_productos(forms.ModelForm):
+    class Meta:
+        model = inventario
+        fields = '__all__'    
+
+
+
+           
 
                               
