@@ -33,8 +33,8 @@ urlpatterns = [
     path('ofertas/',ofertas , name="ofertas"),
     path('ayuda/',ayuda, name="ayuda"),
     path('registro_manual/',registro_manual, name="registro_manual"),
-    path('agregar_cond/',agregar_cond, name="agregar_cond"),
-    path('agregar_usuario/',agregar_usuario, name="agregar_usuario"),
+    #path('agregar_cond/',agregar_cond, name="agregar_cond"),
+    #path('agregar_usuario/',agregar_usuario, name="agregar_usuario"),
     path('validacion_manual/',validacion_manual, name="validacion_manual"),
     path('logueo_manual/',logueo_manual, name="logueo_manual"),
     path('logueo_exitosos/',logueo_exitosos, name="logueo_exitosos"),
@@ -46,6 +46,6 @@ urlpatterns = [
     path('list_tusproductos/',list_tusproductos, name="list_tusproductos"),
     path('listas/',listas, name="listas"),
     path('clase_producto/',clase_producto, name="clase_producto"),
-    
+    path('l_pescados/',l_pescados, name="l_pescados"),
     
     ]       

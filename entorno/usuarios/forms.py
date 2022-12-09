@@ -5,20 +5,7 @@ from .models import *
 #from django.db import model
 #from django.forms import ModelForm
 
-class add_conductor(forms.ModelForm):
-    class Meta:
-        model = driver
-        fields = '__all__'
 
-class add_usuario(forms.ModelForm):
-    class Meta:
-        model = client
-        fields = '__all__'
-
-class add_productor(forms.ModelForm):
-    class Meta:
-        model = producer
-        fields = '__all__'
     
 class form_registro(forms.ModelForm):
     class Meta:

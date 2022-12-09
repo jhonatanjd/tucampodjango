@@ -1,97 +1,7 @@
 from pyexpat import model
 from django.db import models
+from .choices import *
 
-class client(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    identification_card = models.CharField(max_length=10)
-    direction =  models.CharField(max_length=50)
-    phone = models.CharField(max_length=10)
-    cell_phone = models.CharField(max_length=11)
-    email = models.CharField(max_length=254)
-    city = models.CharField(max_length=50)
-    password = models.CharField(max_length=254)  
-    class Meta:
-        db_table ='cliente'
-
-class producer(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    identification_card = models.CharField(max_length=10)
-    direction =  models.CharField(max_length=50)
-    phone = models.CharField(max_length=10)
-    cell_phone = models.CharField(max_length=11)
-    email = models.CharField(max_length=254)
-    city = models.CharField(max_length=50)
-    password = models.CharField(max_length=254)   
-    class Meta:
-        db_table ='productor'
-
-class driver(models.Model):
-    VEHICLE_TYPE =( 
-        ('Pickup', 'Pickup'),
-        ('Luv','Luv'),
-        ('Turbo', 'Turbo'),
-        ('Camion sencillo','Camion'),
-        ('Doble troque', 'Doble troque'),
-        ('Cuatro manos','Cuatro manos'),
-        ('Minimula', 'Minimula'),
-        ('Tractomula 2 troques','Tractomula 2 troques'),
-        ('Tractomula 3 troques','Tractomula 3 troques'))
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    identification_card = models.CharField(max_length=10)
-    direction =  models.CharField(max_length=50)
-    phone = models.CharField(max_length=10)
-    cell_phone = models.CharField(max_length=11)
-    email = models.CharField(max_length=254)
-    vehicle_type = models.CharField(max_length=254, null=True, choices=VEHICLE_TYPE)
-    city = models.CharField(max_length=50)
-    year = models.CharField(max_length=4)
-    password = models.CharField(max_length=254)
-
-    class Meta:
-        db_table ='driver'
-
-class Person(models.Model):
-    SHIRT_SIZES = (
-        ('S', 'Small'),
-        ('M', 'Medium'),
-        ('L', 'Large'),
-    )
-    name = models.CharField(max_length=60)
-    shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
-
-CIUDADS ={
-    ('bogota','bogota'),
-    ('medellin','medellin'),
-    ('cali','cali'),
-    ('boyaca','boyaca'),
-    ('cucuta','cucuta'),
-    ('leticia','leticia'),
-    ('rionegro','rionegro'),
-    ('apartado','apartado'),
-    ('turbo','turbo'),
-    ('caucasia','caucasia'),
-    ('arauca','arauca'),
-    ('barranquilla','barranquilla'),
-    ('sabanalarga','sabanalarga'),
-    ('girardot','girardot'),
-    ('fusagasuga','fusagasuga'),
-    ('zipaquira','zipaquira'),
-    ('facatativa','facatativa'),
-    ('cartagena','cartagena'),
-    ('magangue','magangue'),
-    ('el carmen de bolivar','el carmen de bolivar'),
-    ('tunja','tunja'),
-    
-}
-ROL ={
-    ('eres cliente','eres cliente'),
-    ('eres productor','eres productor'),
-    ('eres conductor','eres conducto')
-    
-}    
 
 class registro (models.Model):
     username = models.CharField(max_length=254, unique=True)
@@ -118,8 +28,6 @@ class soporte(models.Model):
 
     class Meta:
         db_table ='soporte'
-
-
 
 class inventario (models.Model):
     producto = models.CharField(max_length=254,choices=PRODUCTS_FRUTAS)
@@ -155,4 +63,22 @@ class productos (models.Model):
     def __str__(self):
         return self.producto 
 
-           
+class vehiculo (models.Model):
+    tipo_vehiculo = models.CharField(max_length=100,choices=TIPO_VEHICULO, )
+    tipo_carroceria = models.CharField(max_length=100, choices=TIPO_CARROCERIA)
+    capacidad = models.CharField(max_length=100, choices=CAPACIDAD)
+    marca = models.CharField(max_length=254,choices=MARCA)
+    modelo= models.CharField(max_length=4)
+    placa= models.CharField(max_length=6)
+    color = models.CharField(max_length=100, choices=COLOR)
+
+    class Meta:
+        db_table ='vehiculo'
+
+    def __str__(self):
+        return self.tipo_vehiculo 
+
+
+
+
+

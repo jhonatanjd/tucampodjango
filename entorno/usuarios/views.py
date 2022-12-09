@@ -70,6 +70,11 @@ def quien (request):
 def productor (request):
     return render(request, 'productor.html')           
 
+
+def l_pescados (request):
+    return render(request, 'l_pescados.html') 
+
+
 def cliente (request):
     return render(request, 'cliente.html')
 
@@ -91,51 +96,7 @@ def login_cond (request):
 def registro_manual(request):
     return render(request,'registrar_usuario_manual.html')
 
-def agregar_usuario(request):
-    if request.method == 'POST':
-        form = add_usuario(request.POST)
-        if form.is_valid():
-            var = form.save(commit=False)
-            var.nombre = form.cleaned_data['first_name']
-            var.apellido = form.cleaned_data['last_name']
-            var.cedula = form.cleaned_data['identification_card']
-            var.direccion = form.cleaned_data['direction']
-            var.telefono = form.cleaned_data['phone']
-            var.celular = form.cleaned_data['cell_phone']
-            var.email = form.cleaned_data['email']
-            var.ciudad = form.cleaned_data['city']
-            var.password =make_password(form.cleaned_data['password'])
-            var.save()
-            messages.success(request,'usuario cargado exitosamente!!!')
-        else:
-         messages.warning(request,'Usuario no cargado')
-    else:
-        form = add_usuario()
-    return render (request,"registrar_usuario_manual.html",{'form': form})
-            
-def agregar_cond(request):
-    if request.method == 'POST':
-        form = add_conductor(request.POST)
-        if form.is_valid():
-            var = form.save(commit=False)
-            var.nombre = form.cleaned_data['first_name']
-            var.apellido = form.cleaned_data['last_name']
-            var.cedula = form.cleaned_data['identification_card']
-            var.direccion = form.cleaned_data['direction']
-            var.telefono = form.cleaned_data['phone']
-            var.celular = form.cleaned_data['cell_phone']
-            var.email = form.cleaned_data['email']
-            var.tipo_vehiculo = form.cleaned_data['vehicle_type']
-            var.ciudad = form.cleaned_data['city']
-            var.edad = form.cleaned_data['year']
-            var.password =make_password(form.cleaned_data['password'])
-            var.save()
-            messages.success(request,'usuario cragado exitosamente!!!')
-        else:
-         messages.warning(request,'Usuario no cargado')
-    else:
-        form=add_conductor()
-    return render (request,"registrar_conductor.html",{'form': form})
+
            
 def logueo_exitosos (request):
     if "seguridad" in request.session:
