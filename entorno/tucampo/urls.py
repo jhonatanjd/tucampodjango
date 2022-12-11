@@ -43,17 +43,18 @@ urlpatterns = [
     path('registro_productor/',registro_productor, name="registro_productor"),
     path('registro_conductor/',registro_conductor, name="registro_conductor"),
     path('registro_vehiculo/',registro_vehiculo, name="registro_vehiculo"),
-    
+    path('registro_frutas/',registro_frutas, name="registro_frutas"),
 
-    path('logueo_exitosos/',logueo_exitosos, name="logueo_exitosos"),
+    #path('logueo_exitosos/',logueo_exitosos, name="logueo_exitosos"),
     path('registro_func/',registro_func, name="registro_func"),
     path('soporte/',soporte, name="soporte"),
     path('salir/',salir, name="salir"),
     path('buscador/',buscador, name="buscador"),
     path('registro_productos/',registro_productos, name="registro_productos"),
-    path('list_tusproductos/',list_tusproductos, name="list_tusproductos"),
+    #path('list_tusproductos/',list_tusproductos, name="list_tusproductos"),
     path('listas/',listas, name="listas"),
     path('clase_producto/',clase_producto, name="clase_producto"),
     path('l_pescados/',l_pescados, name="l_pescados"),
     path('rol/',rol, name="rol"),
+    path('rol_registro/',rol_registro, name="rol_registro"),
     ]       

@@ -25,6 +25,10 @@ class form_registro_productos(forms.ModelForm):
     class Meta:
         model = inventario
         fields = '__all__'    
+class form_registro_frutas(forms.ModelForm):
+    class Meta:
+        model = frutas
+        fields = '__all__'  
 
 class add_conductor(forms.ModelForm):
     class Meta:
@@ -38,7 +42,7 @@ class add_cliente(forms.ModelForm):
 
 class add_productor(forms.ModelForm):
     class Meta:
-        model = productor
+        model = Productor
         fields = '__all__'
 
 class form_vehiculo(forms.ModelForm):

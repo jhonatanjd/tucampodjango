@@ -9,8 +9,78 @@ PRODUCTS_FRUTAS ={
     ('papaya','papaya'),
     ('manzana','manzana'), 
     ('uvas','uvas'),
-    ('mandarina','mandarina')
+    ('mandarina','mandarina'),
+    ('sandia','sandia'),
+    ('piña','piña'),
+    ('melon','melon'),
+    ('pera','pera'),
+    ('mora','mora'),
+    ('mango','mango'),
+    ('naranja','naranja'),
+    ('uva','uva'),
+    ('limon','limon'),
+    ('durazno','durazno'),
+    ('kiwi','kiwi'),
+    ('pitaya','pitaya'),
+    ('ciruela','ciruela'),
+    ('frambueza','frambueza'),
+    ('granadilla','granadilla'),
+    ('guanabana','guanabana'),
+    ('maracuya','maracuya'),
+    ('arandanos','arandanos'),
+    ('cereza','cereza'),
 }
+VERDURAS_LIST ={
+('zanahoria','zanahoria'),
+('arbeja','arbeja'),
+('lechuga','lechuga'),
+('brocoli','brocoli'),
+('cebolla cabezona','cebolla cabezona'),
+('remolacha','remolacha'),
+('tomate','tomate'),
+('cebolla larga','cebolla larga'),
+('repollo','repollo'),
+('aguacate','aguacate'),
+('pepino','pepino'),
+('berenjena','berenjena'),
+('apio','apio'),
+('cilantro','cilantro'),
+('coliflor','coliflor'),
+('zukini','zukini'),
+('bruselas','bruselas'),
+('pimenton','pimenton'),
+('champiñon','champiñon'),
+('espinaca','espinaca'),
+('ahuyama','ahuyama'),
+('acelga','acelga'),
+('rabano','rabano'),
+('habichuela','habichuela'),
+}
+
+LEGUMINOSAS_LIST={
+
+}
+GRANOS_LIST={
+
+
+}
+
+CARNES_LIST={
+
+
+}
+
+ABARROTES_LIST={
+
+
+}
+
+LACTEOS_LIST={
+
+    
+}
+
+
 CANTIDAS ={
     ('50 kgs','50 kgs'),
     ('60 kgs','60 kgs'),

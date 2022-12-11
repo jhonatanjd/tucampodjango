@@ -13,45 +13,46 @@
 
        
 <br>
+<caption>tu vehiculo</caption>
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">tipo_vehiculo</th>
+    <th scope="col">tipo_carroceria</th>
+    <th scope="col">capacidad</th>
+    <th scope="col">marca</th>
+    <th scope="col">modelo</th>
+    <th scope="col">placa</th>
+    <th scope="col">color</th>
+    
+  </tr>
+</thead>
+{% for vehiculo in vehiculos %}
+<tbody>
+  <tr>
+    <th></th>
+    <td>{{vehiculo.tipo_vehiculo}}</td>
+    <td>{{vehiculo.tipo_carroceria}}</td>
+    <td>{{vehiculo.capacidad}}</td>
+    <td>{{vehiculo.marca}}</td>
+    <td>{{vehiculo.modelo}}</td>
+    <td>{{vehiculo.placa}}</td>
+    <td>{{vehiculo.color}}</td>
+    
+    <td><button class="btn btn-sm btn-danger"><i class="fa-thin fa-trash-can-list"></i></button></td>
+  </tr>
+ 
+  {% endfor %}
+  
+ 
+</tbody>
+</table>
+
+<br>
 
 
 <br>
 
-    <caption>tu vehiculo</caption>
-    <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">tipo_vehiculo</th>
-        <th scope="col">tipo_carroceria</th>
-        <th scope="col">capacidad</th>
-        <th scope="col">marca</th>
-        <th scope="col">modelo</th>
-        <th scope="col">placa</th>
-        <th scope="col">color</th>
-        
-      </tr>
-    </thead>
-    {% for vehiculo in vehiculos %}
-    <tbody>
-      <tr>
-        <th></th>
-        <td>{{vehiculo.tipo_vehiculo}}</td>
-        <td>{{vehiculo.tipo_carroceria}}</td>
-        <td>{{vehiculo.capacidad}}</td>
-        <td>{{vehiculo.marca}}</td>
-        <td>{{vehiculo.modelo}}</td>
-        <td>{{vehiculo.placa}}</td>
-        <td>{{vehiculo.color}}</td>
-        
-        <td><button class="btn btn-sm btn-danger"><i class="fa-thin fa-trash-can-list"></i></button></td>
-      </tr>
-     
-      {% endfor %}
-      
-     
-    </tbody>
-  </table>
-
-<br>
+   
 {% endblock %}

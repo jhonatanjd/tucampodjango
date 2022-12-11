@@ -5,24 +5,45 @@
 
 {% block content %} 
 
-<p>estas buscando <strong>{{query}}</strong></p>
-{% if productos %}
-
-    <p>Articulos encontrados: {{productos│length}} productos</p>
-
-    <ul>
-        {% for productos in productos %}
-            <li>
-
-                {{productos.nombre}}
-            </li>
-        {% endfor %}    
-    </ul>
-
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col"></th>
+    <th scope="col">producto</th>
+    <th scope="col">cantidad</th>
+    <th scope="col">precio_kgs</th>
+    <th scope="col">precio_total</th>
+    <th scope="col">ciudad</th>
+    <th scope="col">fecha_disponible</th>
     
-{% else %}
-    <p>no hay resultados para esta busqueda</p>
-{% endif productos %}
+    
+  </tr>
+</thead>
+{% for p in fruta %}
+<tbody>
+  <tr>
+    <th></th>
+    <td>{{p.producto}}</td>
+    <td>{{p.cantidad}}</td>
+    <td>{{p.precio_kgs}}</td>
+    <td>{{p.precio_total}}</td>
+    <td>{{p.ciudad}}</td>
+    <td>{{p.fecha_disponible}}</td>
+    
+    
+    <td><button class="btn btn-sm btn-danger"><i class="fa-thin fa-trash-can-list"></i></button></td>
+  </tr>
+ 
+  {% endfor %}
+  
+ 
+</tbody>
+</table>
+
+<br>
+
+
+<br>
 
 {% endblock %}
 

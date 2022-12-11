@@ -5,6 +5,7 @@ from usuarios.forms import *
 from usuarios.models import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from .models import frutas
 
 def Home (request):
     return render(request, 'home.html')
@@ -52,7 +53,9 @@ def l_verduras (request):
     return render(request, 'listas_verduras.html')
 
 def l_frutas (request):
-    return render(request, 'l_frutas.html') 
+    fruta=frutas.objects.all()
+    r={'fruta':fruta}
+    return render(request, 'l_frutas.html',r) 
 
 #@login_required
 def vender (request):
@@ -74,14 +77,15 @@ def l_pescados (request):
     return render(request, 'l_pescados.html') 
 
 def cliente (request):
-    
     return render(request, 'cliente.html')
+
+#def conductor (request):
+    return render(request, 'conductor.html')
 
 def conductor (request):
     vehiculos=vehiculo.objects.all()
     data= {'vehiculos':vehiculos}
     return render(request, 'conductor.html',data)
-
 def ofertas (request):
     return render(request, 'ofertas.html')
 
@@ -96,16 +100,12 @@ def login_cond (request):
 
 def rol (request):
     return render(request, 'rol.html') 
+def rol_registro (request):
+    return render(request, 'rol_registro.html') 
 
 def registro_manual(request):
     return render(request,'registrar_usuario_manual.html')
           
-def logueo_exitosos (request):
-    if "seguridad" in request.session:
-        return render (request, 'logueo_exitosos.html')
-    else:
-         return render(request, 'logueo_manual.html')   
-
 def registro_cliente(request):
     if request.method == 'POST':
         form = add_cliente(request.POST)
@@ -265,7 +265,7 @@ def validacion_productor (request):
     prod=productor.objects.all()
     dat ={'prod':prod}
     if request.method == 'POST':
-        user=request.POST.get('email')
+        user=request.POST.get('username')
         passw=request.POST.get('password')
         
         if prod.objects.filter(username=user).exists():
@@ -329,6 +329,31 @@ def registro_productos (request):
         form = form_registro_productos() 
     return render (request,'registrar_productos.html',{'form': form})
 
+def vender (request):
+    return render(request,'vender.html')
+
+def registro_frutas (request):
+    if request.method == 'POST':
+        form = form_registro_frutas(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            
+            var.precio_total = form.cleaned_data['precio_total']
+            var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_frutas() 
+    return render (request,'registro_frutas.html',{'form': form})
+
 def registro_vehiculo (request):
     if request.method == 'POST':
         form = form_vehiculo(request.POST)
@@ -348,13 +373,6 @@ def registro_vehiculo (request):
     else:
         form = form_vehiculo() 
     return render (request,'registrar_vehiculo.html',{'form': form})
-
-def list_tusproductos (request):
-    if "seguridad" in request.session:
-    
-        return render (request, 'tus_productos.html')
-    else:
-        return render (request, 'logueo_manual.html') 
         
 def clase_producto(request):
     return render(request,'clase_producto.html')
@@ -377,7 +395,7 @@ def buscador(request):
                  
 def validacion_manual (request):
     if request.method == 'POST':
-        user=request.POST.get('email')
+        user=request.POST.get('username')
         passw=request.POST.get('password')
         print(user)
         print(passw)
@@ -386,4 +404,11 @@ def validacion_manual (request):
             passw=check_password(passw,logueo.password)
             if passw ==False:
                 messages.error(request,'usuario o contraseña erronea')
-                return render(request,'logueo_manual.html')               
+                return render(request,'logueo_productor.html')               
+            else:
+                request.session['seguridad'] = True
+                return render (request,'productor.html')
+        else:
+            messages.error(request,'usuario o contraseña erronena')
+            return render(request,'logueo_productor.html')
+               
