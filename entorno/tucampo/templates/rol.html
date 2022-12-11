@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}tu campo {% endblock %}
+
+{% block content %} 
+<br>
+<h2 class="text-center">¿como quieres ingresar?</h2>
+<br>
+<div class="row">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<div class="col-sm-2">
+    <a href="{% url 'logueo_cliente' %}"><img src='{% static "IMAGES/usuario.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="...">Cliente</a>
+      <div class="card-body">
+      </div>
+  </div>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="col-sm-2">
+      <a href="{% url 'logueo_productor' %}"><img src='{% static "IMAGES/agricultor.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="...">Productor</a>
+      <div class="card-body">
+      </div>      
+  </div> 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="col-sm-2">
+    <a href="{% url 'logueo_conductor' %}"><img src='{% static "IMAGES/conductor.jpg" %}'  width="600px" height="200px" class="card-img-top" alt="...">conductor</a>
+      <div class="card-body">
+      </div>
+  </div>
+</div>
+<br>
+{% endblock %}

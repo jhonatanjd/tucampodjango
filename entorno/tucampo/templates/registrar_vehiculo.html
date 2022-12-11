@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}tu campo{% endblock %}
+
+{% block content %}  
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" href="{% url 'conductor' %}" role="button">volver</a>
+<br>
+ <br>
+
+ <div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="text-center">Registra aqui tu vehiculo</h3>
+            <p>
+                <form method="post" action="/registro_vehiculo/">
+                    {% csrf_token %}
+                    {{ form.as_p }} 
+                  
+                    <input type="submit" class="btn btn-success" value="registrar">
+                    
+                    
+                </form>            
+            </p>
+        </div>
+    </div>
+ </div>
+<br>
+<br>
+
+ {% endblock content %}<div class="alert-success" {{ mesage.tags }}> {{message}}</div>

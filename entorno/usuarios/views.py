@@ -70,16 +70,17 @@ def quien (request):
 def productor (request):
     return render(request, 'productor.html')           
 
-
 def l_pescados (request):
     return render(request, 'l_pescados.html') 
 
-
 def cliente (request):
+    
     return render(request, 'cliente.html')
 
 def conductor (request):
-    return render(request, 'conductor.html')
+    vehiculos=vehiculo.objects.all()
+    data= {'vehiculos':vehiculos}
+    return render(request, 'conductor.html',data)
 
 def ofertas (request):
     return render(request, 'ofertas.html')
@@ -91,18 +92,88 @@ def login_usu (request):
     return render(request, 'login_usuarios.html') 
 
 def login_cond (request):
-    return render(request, 'login_conductor.html') 
+    return render(request, 'login_conductor.html')
+
+def rol (request):
+    return render(request, 'rol.html') 
 
 def registro_manual(request):
     return render(request,'registrar_usuario_manual.html')
-
-
-           
+          
 def logueo_exitosos (request):
     if "seguridad" in request.session:
         return render (request, 'logueo_exitosos.html')
     else:
          return render(request, 'logueo_manual.html')   
+
+def registro_cliente(request):
+    if request.method == 'POST':
+        form = add_cliente(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.username = form.cleaned_data['username']
+            var.password =make_password(form.cleaned_data['password'])
+            var.nombres = form.cleaned_data['nombres']
+            var.apellidos = form.cleaned_data['apellidos']
+            var.cedula = form.cleaned_data['cedula']
+            var.direccion = form.cleaned_data['direcion']
+            var.telefono = form.cleaned_data['telefono']
+            var.celular = form.cleaned_data['celular']
+            var.correo = form.cleaned_data['correo']
+            var.ciudad = form.cleaned_data['ciudad']
+            var.save()
+            messages.success(request,'usuario cargado exitosamente!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = add_cliente ()
+    return render (request,"registrar_usuario.html",{'form': form})
+
+def registro_productor(request):
+    if request.method == 'POST':
+        form = form_registro(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.username = form.cleaned_data['username']
+            var.password =make_password(form.cleaned_data['password'])
+            var.nombres = form.cleaned_data['nombres']
+            var.apellidos = form.cleaned_data['apellidos']
+            var.cedula = form.cleaned_data['cedula']
+            var.direccion = form.cleaned_data['direcion']
+            var.telefono = form.cleaned_data['telefono']
+            var.celular = form.cleaned_data['celular']
+            var.correo = form.cleaned_data['correo']
+            var.ciudad = form.cleaned_data['ciudad']
+            var.save()
+            messages.success(request,'usuario cargado exitosamente!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = form_registro ()
+    return render (request,"registrar_productor.html",{'form': form})
+
+def registro_conductor(request):
+    if request.method == 'POST':
+        form = add_conductor(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.username = form.cleaned_data['username']
+            var.password =make_password(form.cleaned_data['password'])
+            var.nombres = form.cleaned_data['nombres']
+            var.apellidos = form.cleaned_data['apellidos']
+            var.cedula = form.cleaned_data['cedula']
+            var.direccion = form.cleaned_data['direcion']
+            var.telefono = form.cleaned_data['telefono']
+            var.celular = form.cleaned_data['celular']
+            var.correo = form.cleaned_data['correo']
+            var.ciudad = form.cleaned_data['ciudad']
+            var.save()
+            messages.success(request,'usuario cargado exitosamente!!!')
+        else:
+         messages.warning(request,'Usuario no cargado')
+    else:
+        form = add_conductor ()
+    return render (request,"registrar_conductor.html",{'form': form})
 
 def registro_func(request):
     if request.method == 'POST':
@@ -111,7 +182,6 @@ def registro_func(request):
             var = form.save(commit=False)
             var.username = form.cleaned_data['username']
             var.password =make_password(form.cleaned_data['password'])
-            var.rol = form.cleaned_data['rol']
             var.nombres = form.cleaned_data['nombres']
             var.apellidos = form.cleaned_data['apellidos']
             var.cedula = form.cleaned_data['cedula']
@@ -146,28 +216,93 @@ def soporte (request):
 #def login (request):
     return render(request, 'registration/login.html') 
 
-def logueo_manual (request):
-    return render (request, 'logueo_manual.html') 
+def logueo_cliente (request):
+    return render (request, 'logueo_cliente.html') 
 
-def validacion_manual (request):
+def logueo_productor (request):
+    return render (request, 'logueo_productor.html') 
+
+def logueo_conductor (request):
+    return render (request, 'logueo_conductor.html') 
+
+#def validacion_cliente (request):
     if request.method == 'POST':
         user=request.POST.get('email')
         passw=request.POST.get('password')
-        print(user)
-        print(passw)
-        if registro.objects.filter(username=user).exists():
-            logueo=registro.objects.get(username=user)
+       
+        if cliente.o(username=user).exists():
+            logueo=cliente.objects.get(username=user)
             passw=check_password(passw,logueo.password)
             if passw ==False:
                 messages.error(request,'usuario o contraseña erronea')
-                return render(request,'logueo_manual.html')
+                return render(request,'logueo_cliente.html')
             else:
                 request.session['seguridad']=True
-                return render (request,'logueo_exitosos.html')
+                return render (request,'cliente.html')
+
+        else:
+            messages.error(request,'usuario o contraseña erronena')
+            return render(request,'logueo_cliente.html')
+def validacion_cliente(request):
+    if request.method == 'POST':
+        user=request.POST.get('email')
+        passw=request.POST.get('password')
+
+        if cliente.objects.filter(username=user).exists():
+            logueo=cliente.objects.get(username=user)
+            passw=check_password(passw,logueo.password)
+            if passw ==False:
+                messages.error(request,'usuario o contraseña erronea')
+                return render(request,'logueo_cliente.html')
+            else:
+                request.session['seguridad']=True
+                return render (request, 'cliente.html')
+        else: 
+            messages.error(request,'usuario o contraseña erronena')
+            return render(request,'logueo_cliente.html')            
+    
+def validacion_productor (request):
+    prod=productor.objects.all()
+    dat ={'prod':prod}
+    if request.method == 'POST':
+        user=request.POST.get('email')
+        passw=request.POST.get('password')
+        
+        if prod.objects.filter(username=user).exists():
+            logueo=prod.objects.get(username=user)
+            passw=check_password(passw,logueo.password)
+            if passw ==False:
+                messages.error(request,'usuario o contraseña erronea')
+                return render(request,'logueo_productor.html')
+            else:
+                request.session['seguridad']=True
+                return render (request,'vender.html',dat)
 
         else:
             messages.error(request,'usuario o contraseña erronena')
             return render(request,'logueo_manual.html')
+
+def validacion_conductor (request):
+    
+    cond=conductor.objects.all()
+    dats={'cond':cond}
+    if request.method == 'POST':
+        user=request.POST.get('email')
+        passw=request.POST.get('password')
+        
+        if cond.objects.filter(username=user).exists():
+            logueo=cond.objects.get(username=user)
+            passw=check_password(passw,logueo.password)
+            if passw ==False:
+                messages.error(request,'usuario o contraseña erronea')
+                return render(request,'logueo_conductor.html')
+            else:
+                request.session['seguridad']=True
+                return render (request,'conductor.html',dats)
+
+        else:
+            messages.error(request,'usuario o contraseña erronena')
+            return render(request,'logueo_conductor.html')
 
 def salir (request):
     del request.session['seguridad']
@@ -194,7 +329,26 @@ def registro_productos (request):
         form = form_registro_productos() 
     return render (request,'registrar_productos.html',{'form': form})
 
-                    
+def registro_vehiculo (request):
+    if request.method == 'POST':
+        form = form_vehiculo(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.tipo_vehiculo = form.cleaned_data['tipo_vehiculo']
+            var.tipo_carroceria = form.cleaned_data['tipo_carroceria']
+            var.capacidad = form.cleaned_data['capacidad']
+            var.marca = form.cleaned_data['marca']
+            var.modelo = form.cleaned_data['modelo']
+            var.placa = form.cleaned_data['placa']
+            var.color = form.cleaned_data['color']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_vehiculo() 
+    return render (request,'registrar_vehiculo.html',{'form': form})
+
 def list_tusproductos (request):
     if "seguridad" in request.session:
     
@@ -207,3 +361,29 @@ def clase_producto(request):
                  
 def listas (request):
     return render(request, 'lista.html')                  
+
+def buscador(request):
+    if request.GET["prd"]:
+        #mensaje="articulo buscado: %r" %request.GET["prd"]
+        busqueda=request.GET["prd"]
+        if len(busqueda)>25:
+            mensaje="texto de busqueda demasiado largo"
+        else:    
+            prod=productos.objects.filter(nombre__icontains=busqueda)
+            return render(request, "resultados_busqueda.html", {"productos":prod, "query":busqueda})
+    else:
+        mensaje="no has introducido nada"
+        return HttpResponse(mensaje) 
+                 
+def validacion_manual (request):
+    if request.method == 'POST':
+        user=request.POST.get('email')
+        passw=request.POST.get('password')
+        print(user)
+        print(passw)
+        if registro.objects.filter(username=user).exists():
+            logueo=registro.objects.get(username=user)
+            passw=check_password(passw,logueo.password)
+            if passw ==False:
+                messages.error(request,'usuario o contraseña erronea')
+                return render(request,'logueo_manual.html')               

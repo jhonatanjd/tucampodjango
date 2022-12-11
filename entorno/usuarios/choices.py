@@ -57,7 +57,8 @@ ROL ={
 TIPO_VEHICULO ={
     ('Luv','Luv'),
     ('Turbo', 'Turbo'),
-    ('Camion sencillo','Camion'),
+    ('Camion sencillo','Camion sencillo'),
+    ('Camion grande','Camion grande'),
     ('Doble troque', 'Doble troque'),
     ('Cuatro manos','Cuatro manos'),
     ('Minimula', 'Minimula'),
@@ -96,13 +97,13 @@ CAPACIDAD ={
     }
 
 MARCA ={
-    ('CHEVROLET','500_KGS'),
-    ('MAZDA', '1_TONELADA'),
-    ('FORD', '2_TONELADA'),
-    ('KIA', '3_TONOLEDA'),
-    ('TOYOTA', '4_TONELADA'),
-    ('HIUNDAY', '5_TONELADA'),
-    ('NISSAN', '6_TONOLEDA'),
+    ('CHEVROLET','CHEVROLET'),
+    ('MAZDA', 'MAZDA'),
+    ('FORD', 'FORD'),
+    ('KIA', 'KIA'),
+    ('TOYOTA', 'TOYOTA'),
+    ('HIUNDAY', 'HIUNDAY'),
+    ('NISSAN', 'NISSAN'),
   
     }
 

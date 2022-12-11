@@ -6,6 +6,10 @@ from usuarios.models import *
 
 #admin.site.register(productos)
 #admin.site.register(registro)
+admin.site.register(cliente)
+admin.site.register(productor)
+admin.site.register(conductor)
+admin.site.register(vehiculo)
 
 
 

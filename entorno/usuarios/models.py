@@ -6,7 +6,7 @@ from .choices import *
 class registro (models.Model):
     username = models.CharField(max_length=254, unique=True)
     password = models.CharField(max_length=254)
-    rol = models.CharField(max_length=254, choices=ROL)
+    #rol = models.CharField(max_length=254, choices=ROL)
     nombres = models.CharField(max_length=254)
     apellidos = models.CharField(max_length=254)
     cedula = models.CharField(max_length=254)
@@ -69,7 +69,7 @@ class vehiculo (models.Model):
     capacidad = models.CharField(max_length=100, choices=CAPACIDAD)
     marca = models.CharField(max_length=254,choices=MARCA)
     modelo= models.CharField(max_length=4)
-    placa= models.CharField(max_length=6)
+    placa= models.CharField(max_length=6,unique=True)
     color = models.CharField(max_length=100, choices=COLOR)
 
     class Meta:
@@ -78,7 +78,57 @@ class vehiculo (models.Model):
     def __str__(self):
         return self.tipo_vehiculo 
 
+class cliente(models.Model):
+    username = models.CharField(max_length=100, unique=True)
+    password = models.CharField(max_length=100)
+    nombres = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100)
+    cedula = models.CharField(max_length=9, unique=True) 
+    direcion = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=10)
+    celular = models.CharField(max_length=10, unique=True)
+    correo = models.CharField(max_length=100, unique=True)
+    ciudad= models.CharField(max_length=40, choices=CIUDADS)  
+    class Meta:
+        db_table ='cliente'
 
+    def __str__(self):
+            return self.nombres
+    
+class productor(models.Model):
+    username = models.CharField(max_length=100, unique=True)
+    password = models.CharField(max_length=100)
+    nombres = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100)
+    cedula = models.CharField(max_length=9, unique=True) 
+    direcion = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=10)
+    celular = models.CharField(max_length=10, unique=True)
+    correo = models.CharField(max_length=100, unique=True)
+    ciudad= models.CharField(max_length=40, choices=CIUDADS)  
+    class Meta:
+        db_table ='productor'
+
+    def __str__(self):
+            return self.nombres
+    
+class conductor(models.Model):
+    username = models.CharField(max_length=100, unique=True)
+    password = models.CharField(max_length=100)
+    nombres = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100)
+    cedula = models.CharField(max_length=9, unique=True) 
+    direcion = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=10)
+    celular = models.CharField(max_length=10, unique=True)
+    correo = models.CharField(max_length=100, unique=True)
+    ciudad= models.CharField(max_length=40, choices=CIUDADS)  
+    
+    class Meta:
+        db_table ='conductor'
+
+    def __str__(self):
+            return self.nombres
 
 
 

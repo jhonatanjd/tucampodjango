@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             
-            <form method="post" action="/validacion_manual/" >
+            <form method="post" action="/validacion_cliente/" >
             {% csrf_token %}
             <input type="text" name="email" class="form-control" placeholder="digita tu correo"><br><br>
             <input type="password" name="password" class="form-control" placeholder="digite tu contraseña"><br><br>
@@ -22,17 +22,11 @@
             </form>
 
     
-            <p>¿no tienes cuenta?<a class="link" href="{% url 'registro_func' %}"> registrate</a></p>
+            <p>¿no tienes cuenta?<a class="link" href="{% url 'registro_cliente' %}"> registrate</a></p>
             <p>al registrarte, aceptas nuestras condiciones de uso y políticas de privacidad.</p>
         </div>
     </div>
 </div>
-
-
-
-
-
-
 
 
 {% endblock %}
