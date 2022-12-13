@@ -28,7 +28,7 @@
           <a class="nav-link" href="{% url 'quien' %}">Quienes Somos</a>
         </li>
     
-        {% if user.is_authenticated %}
+        {% if productor.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'rol_registro' %}">Crea tu cuenta</a>
         </li>
@@ -39,9 +39,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'rol_registro' %}">Crea tu cuenta</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'salir' %}">Salir</a>
-        </li>
+        
         {% endif %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

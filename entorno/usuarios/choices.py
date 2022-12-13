@@ -101,6 +101,7 @@ LACTEOS_LIST={
 ( 'yogur' , 'yogur' ),
 ( 'kumis' , 'kumis' ),
 ( 'huevosAAA' , 'huevosAAA' ),
+( 'leche' , 'leche' ),
 ( 'huevos_AA' , 'huevos_AA' ),
 ( 'huevos_codorniz' , 'huevos_codorniz' ),
 ( 'Huevosgallinas_en_jaulas' , 'Huevosgallinas_en_jaulas' ),

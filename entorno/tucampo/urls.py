@@ -8,7 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/',include('django.contrib.auth.urls')),
     path('',Home, name="home"),
-    path('home1',Home1, name="home1"),
     path('frutas/',frutas1, name="frutas"),
     path('verduras/',verduras1, name="verduras"),
     path('granos/',granos1, name="granos"),
@@ -32,7 +31,7 @@ urlpatterns = [
     path('conductor/',conductor1, name="conductor"),
     path('ofertas/',ofertas , name="ofertas"),
     path('ayuda/',ayuda, name="ayuda"),
-    path('registro_manual/',registro_manual, name="registro_manual"),
+    
     path('validacion_cliente/',validacion_cliente, name="validacion_cliente"),
     path('validacion_productor/',validacion_productor, name="validacion_productor"),
     path('validacion_conductor/',validacion_conductor, name="validacion_conductor"),
@@ -54,13 +53,13 @@ urlpatterns = [
     
     path('validacion_manual/',validacion_manual, name="validacion_manual"),
     
-    path('registro_func/',registro_func, name="registro_func"),
+    
     path('soporte/',soporte, name="soporte"),
     path('salir/',salir, name="salir"),
     path('buscador/',buscador, name="buscador"),
     path('registro_productos/',registro_productos, name="registro_productos"),
-    #path('list_tusproductos/',list_tusproductos, name="list_tusproductos"),
-    path('listas/',listas, name="listas"),
+    
+   
     path('clase_producto/',clase_producto, name="clase_producto"),
     path('l_pescados/',l_pescados, name="l_pescados"),
     path('rol/',rol, name="rol"),

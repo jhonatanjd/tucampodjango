@@ -10,9 +10,6 @@ from usuarios.models import frutas
 def Home (request):
     return render(request, 'home.html')
 
-def Home1 (request):
-    return render(request, 'home1.html')    
-
 def frutas1 (request):
     return render(request, 'frutas.html')
 
@@ -35,35 +32,47 @@ def lacteos1 (request):
     return render(request, 'lacteos.html')
 
 def l_lacteos (request):
-    return render(request, 'listas_lacteos.html')
+    lacteo=lacteos.objects.all()
+    l={'lacteo':lacteo}
+
+    return render(request, 'listas_lacteos.html',l)
 
 def l_abarrotes (request):
-    return render(request, 'listas_abarrotes.html')
+    abarrote=abarrotes.objects.all()
+    w={'abarrote':abarrote}
+    return render(request, 'listas_abarrotes.html',w)
 
 def l_carnes (request):
-    return render(request, 'listas_carnes.html')
+    carne=carnes.objects.all()
+    a={'carne':carne}
+    return render(request, 'listas_carnes.html',a)
 
 def l_leguminosas (request):
-    return render(request, 'listas_leguminosas.html')
+    leguminosa=leguminosas.objects.all()
+    e={'leguminosa':leguminosa}
+    return render(request, 'listas_leguminosas.html',e)
 
 def l_granos (request):
-    return render(request, 'listas_granos.html')
+    grano=granos.objects.all()
+    s={'grano':grano}
+    return render(request, 'listas_granos.html',s)
 
 def l_verduras (request):
-    return render(request, 'listas_verduras.html')
+    verdura=verduras.objects.all()
+    q={'verdura':verdura}
+    return render(request, 'listas_verduras.html',q)
 
 def l_frutas (request):
     fruta=frutas.objects.all()
     r={'fruta':fruta}
     return render(request, 'l_frutas.html',r) 
     
-#@login_required
 def vender (request):
     if "seguridad" in request.session:
         return render(request, 'vender.html')
     else:
-        return render(request, 'logueo_manual.html')      
-#@login_required         
+        return render(request, 'logueo_productor.html')      
+        
 def comprar (request):
     return render(request, 'comprar.html') 
 
@@ -74,8 +83,6 @@ def productor1 (request):
     fruta= frutas.objects.all()
     r={'fruta':fruta}
 
-
-
     vehiculos=vehiculo.objects.all()
     data= {'vehiculos':vehiculos}
     return render(request, 'productor.html',r)           
@@ -85,9 +92,6 @@ def l_pescados (request):
 
 def cliente1 (request):
     return render(request, 'cliente.html')
-
-def conductor2 (request):
-    return render(request, 'conductor.html')
 
 def conductor1 (request):
     vehiculos=vehiculo.objects.all()
@@ -103,10 +107,7 @@ def rol (request):
     return render(request, 'rol.html') 
 def rol_registro (request):
     return render(request, 'rol_registro.html') 
-
-def registro_manual(request):
-    return render(request,'registrar_usuario_manual.html')
-          
+         
 def registro_cliente(request):
     if request.method == 'POST':
         form = add_cliente(request.POST)
@@ -132,7 +133,7 @@ def registro_cliente(request):
 
 def registro_productor(request):
     if request.method == 'POST':
-        form = form_registro(request.POST)
+        form = add_productor(request.POST)
         if form.is_valid():
             var = form.save(commit=False)
             var.username = form.cleaned_data['username']
@@ -150,7 +151,7 @@ def registro_productor(request):
         else:
          messages.warning(request,'Usuario no cargado')
     else:
-        form = form_registro ()
+        form = add_productor ()
     return render (request,"registrar_productor.html",{'form': form})
 
 def registro_conductor(request):
@@ -175,29 +176,6 @@ def registro_conductor(request):
     else:
         form = add_conductor ()
     return render (request,"registrar_conductor.html",{'form': form})
-
-def registro_func(request):
-    if request.method == 'POST':
-        form = form_registro(request.POST)
-        if form.is_valid():
-            var = form.save(commit=False)
-            var.username = form.cleaned_data['username']
-            var.password =make_password(form.cleaned_data['password'])
-            var.nombres = form.cleaned_data['nombres']
-            var.apellidos = form.cleaned_data['apellidos']
-            var.cedula = form.cleaned_data['cedula']
-            var.direccion = form.cleaned_data['direcion']
-            var.telefono = form.cleaned_data['telefono']
-            var.celular = form.cleaned_data['celular']
-            var.correo = form.cleaned_data['correo']
-            var.ciudad = form.cleaned_data['ciudad']
-            var.save()
-            messages.success(request,'usuario cargado exitosamente!!!')
-        else:
-         messages.warning(request,'Usuario no cargado')
-    else:
-        form = form_registro ()
-    return render (request,"registro.html",{'form': form})
 
 def soporte (request):
     if request.method == 'POST':
@@ -312,7 +290,6 @@ def registro_productos (request):
 #def vender (request):
     return render(request,'vender.html')
 
-
 def registro_vehiculo (request):
     if request.method == 'POST':
         form = form_vehiculo(request.POST)
@@ -336,9 +313,6 @@ def registro_vehiculo (request):
 def clase_producto(request):
     return render(request,'clase_producto.html')
                  
-def listas (request):
-    return render(request, 'lista.html')                  
-
 def buscador(request):
     if request.GET["prd"]:
         #mensaje="articulo buscado: %r" %request.GET["prd"]
