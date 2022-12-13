@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-u+z5@u+fgcjn8o9r$5=5iqivkg0eu!!o)h#g-o*9^2rkqdbb&a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []#'172.31.93.232'
 
 
 # Application definition
@@ -69,9 +69,9 @@ DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tucampo',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'USER': 'admin',
+        'PASSWORD': '123456789',
+        'HOST': 'database-1.cf0ctzkvix85.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
@@ -119,3 +119,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'tucampo/static/'),)
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#DATE_INPUT_FORMATS = ('%d-%m-%Y',)

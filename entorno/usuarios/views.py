@@ -6,32 +6,32 @@ from usuarios.models import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import frutas
-
+from usuarios.models import frutas
 def Home (request):
     return render(request, 'home.html')
 
 def Home1 (request):
     return render(request, 'home1.html')    
 
-def frutas (request):
+def frutas1 (request):
     return render(request, 'frutas.html')
 
-def verduras (request):
+def verduras1 (request):
     return render(request, 'verduras.html')   
 
-def granos (request):
+def granos1 (request):
     return render(request, 'granos.html')
 
-def leguminosas (request):
+def leguminosas1 (request):
     return render(request, 'leguminosas.html')
 
-def carnes (request):
+def carnes1 (request):
     return render(request, 'carnes.html')     
 
-def abarrotes (request):
+def abarrotes1 (request):
     return render(request, 'abarrotes.html')
 
-def lacteos (request):
+def lacteos1 (request):
     return render(request, 'lacteos.html')
 
 def l_lacteos (request):
@@ -56,7 +56,7 @@ def l_frutas (request):
     fruta=frutas.objects.all()
     r={'fruta':fruta}
     return render(request, 'l_frutas.html',r) 
-
+    
 #@login_required
 def vender (request):
     if "seguridad" in request.session:
@@ -70,19 +70,26 @@ def comprar (request):
 def quien (request):
     return render(request, 'quienesSomos.html')
 
-def productor (request):
-    return render(request, 'productor.html')           
+def productor1 (request):
+    fruta= frutas.objects.all()
+    r={'fruta':fruta}
+
+
+
+    vehiculos=vehiculo.objects.all()
+    data= {'vehiculos':vehiculos}
+    return render(request, 'productor.html',r)           
 
 def l_pescados (request):
     return render(request, 'l_pescados.html') 
 
-def cliente (request):
+def cliente1 (request):
     return render(request, 'cliente.html')
 
-#def conductor (request):
+def conductor2 (request):
     return render(request, 'conductor.html')
 
-def conductor (request):
+def conductor1 (request):
     vehiculos=vehiculo.objects.all()
     data= {'vehiculos':vehiculos}
     return render(request, 'conductor.html',data)
@@ -91,12 +98,6 @@ def ofertas (request):
 
 def ayuda (request):
     return render(request, 'ayuda.html')
-
-def login_usu (request):
-    return render(request, 'login_usuarios.html') 
-
-def login_cond (request):
-    return render(request, 'login_conductor.html')
 
 def rol (request):
     return render(request, 'rol.html') 
@@ -225,27 +226,9 @@ def logueo_productor (request):
 def logueo_conductor (request):
     return render (request, 'logueo_conductor.html') 
 
-#def validacion_cliente (request):
-    if request.method == 'POST':
-        user=request.POST.get('email')
-        passw=request.POST.get('password')
-       
-        if cliente.o(username=user).exists():
-            logueo=cliente.objects.get(username=user)
-            passw=check_password(passw,logueo.password)
-            if passw ==False:
-                messages.error(request,'usuario o contraseña erronea')
-                return render(request,'logueo_cliente.html')
-            else:
-                request.session['seguridad']=True
-                return render (request,'cliente.html')
-
-        else:
-            messages.error(request,'usuario o contraseña erronena')
-            return render(request,'logueo_cliente.html')
 def validacion_cliente(request):
     if request.method == 'POST':
-        user=request.POST.get('email')
+        user=request.POST.get('username')
         passw=request.POST.get('password')
 
         if cliente.objects.filter(username=user).exists():
@@ -262,43 +245,40 @@ def validacion_cliente(request):
             return render(request,'logueo_cliente.html')            
     
 def validacion_productor (request):
-    prod=productor.objects.all()
-    dat ={'prod':prod}
+    
     if request.method == 'POST':
         user=request.POST.get('username')
         passw=request.POST.get('password')
         
-        if prod.objects.filter(username=user).exists():
-            logueo=prod.objects.get(username=user)
+        if Productor.objects.filter(username=user).exists():
+            logueo=Productor.objects.get(username=user)
             passw=check_password(passw,logueo.password)
             if passw ==False:
                 messages.error(request,'usuario o contraseña erronea')
                 return render(request,'logueo_productor.html')
             else:
                 request.session['seguridad']=True
-                return render (request,'vender.html',dat)
+                return render (request,'vender.html')
 
         else:
             messages.error(request,'usuario o contraseña erronena')
-            return render(request,'logueo_manual.html')
+            return render(request,'logueo_productor.html')
 
 def validacion_conductor (request):
     
-    cond=conductor.objects.all()
-    dats={'cond':cond}
     if request.method == 'POST':
-        user=request.POST.get('email')
+        user=request.POST.get('username')
         passw=request.POST.get('password')
         
-        if cond.objects.filter(username=user).exists():
-            logueo=cond.objects.get(username=user)
+        if conductor.objects.filter(username=user).exists():
+            logueo=conductor.objects.get(username=user)
             passw=check_password(passw,logueo.password)
             if passw ==False:
                 messages.error(request,'usuario o contraseña erronea')
                 return render(request,'logueo_conductor.html')
             else:
                 request.session['seguridad']=True
-                return render (request,'conductor.html',dats)
+                return render (request,'conductor.html')
 
         else:
             messages.error(request,'usuario o contraseña erronena')
@@ -306,7 +286,7 @@ def validacion_conductor (request):
 
 def salir (request):
     del request.session['seguridad']
-    return render(request,'logueo_manual.html')
+    return render(request,'rol.html')
 
 def registro_productos (request):
     if request.method == 'POST':
@@ -329,30 +309,9 @@ def registro_productos (request):
         form = form_registro_productos() 
     return render (request,'registrar_productos.html',{'form': form})
 
-def vender (request):
+#def vender (request):
     return render(request,'vender.html')
 
-def registro_frutas (request):
-    if request.method == 'POST':
-        form = form_registro_frutas(request.POST)
-        if form.is_valid():
-            var = form.save(commit=False)
-            var.prodducto = form.cleaned_data['producto']
-            var.cantidad = form.cleaned_data['cantidad']
-            var.precio_kgs = form.cleaned_data['precio_kgs']
-            
-            var.precio_total = form.cleaned_data['precio_total']
-            var.fecha_disponible = form.cleaned_data['fecha_disponible']
-            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
-            var.descripcion = form.cleaned_data['descripcion']
-            var.estado = form.cleaned_data['estado']
-            var.save()
-            messages.success(request,'producto cargado!!!')
-        else:
-         messages.warning(request,'producto no cargado')
-    else:
-        form = form_registro_frutas() 
-    return render (request,'registro_frutas.html',{'form': form})
 
 def registro_vehiculo (request):
     if request.method == 'POST':
@@ -412,3 +371,149 @@ def validacion_manual (request):
             messages.error(request,'usuario o contraseña erronena')
             return render(request,'logueo_productor.html')
                
+def registro_frutas (request):
+    if request.method == 'POST':
+        form = form_registro_frutas(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            var.precio_total = form.cleaned_data['precio_total']
+            #var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_frutas() 
+    return render (request,'registro_frutas.html',{'form': form})
+    
+def registro_verduras (request):
+    if request.method == 'POST':
+        form = form_registro_verduras(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            var.precio_total = form.cleaned_data['precio_total']
+            #var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_verduras() 
+    return render (request,'registro_verduras.html',{'form': form})
+
+def registro_leguminosas (request):
+    if request.method == 'POST':
+        form = form_registro_leguminosas(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            var.precio_total = form.cleaned_data['precio_total']
+            #var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_leguminosas() 
+    return render (request,'registro_leguminosas.html',{'form': form})    
+
+def registro_granos (request):
+    if request.method == 'POST':
+        form = form_registro_granos(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            var.precio_total = form.cleaned_data['precio_total']
+            #var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_granos() 
+    return render (request,'registro_granos.html',{'form': form})
+
+def registro_carnes (request):
+    if request.method == 'POST':
+        form = form_registro_carnes(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            var.precio_total = form.cleaned_data['precio_total']
+            #var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_carnes() 
+    return render (request,'registro_carnes.html',{'form': form})
+
+def registro_abarrotes (request):
+    if request.method == 'POST':
+        form = form_registro_abarrotes(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            var.precio_total = form.cleaned_data['precio_total']
+            #var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_abarrotes() 
+    return render (request,'registro_abarrotes.html',{'form': form})
+
+def registro_lacteos (request):
+    if request.method == 'POST':
+        form = form_registro_lacteos(request.POST)
+        if form.is_valid():
+            var = form.save(commit=False)
+            var.prodducto = form.cleaned_data['producto']
+            var.cantidad = form.cleaned_data['cantidad']
+            var.precio_kgs = form.cleaned_data['precio_kgs']
+            var.precio_total = form.cleaned_data['precio_total']
+            #var.fecha_disponible = form.cleaned_data['fecha_disponible']
+            var.ofrece_transporte = form.cleaned_data['ofrece_transporte']
+            var.descripcion = form.cleaned_data['descripcion']
+            var.estado = form.cleaned_data['estado']
+            var.save()
+            messages.success(request,'producto cargado!!!')
+        else:
+         messages.warning(request,'producto no cargado')
+    else:
+        form = form_registro_lacteos() 
+    return render (request,'registro_lacteos.html',{'form': form})

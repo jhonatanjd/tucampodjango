@@ -16,7 +16,6 @@ class registro (models.Model):
     correo = models.CharField(max_length=100, unique=True)
     ciudad= models.CharField(max_length=40, choices=CIUDADS) 
 
-
     class Meta:
         db_table ='registro'
 
@@ -64,14 +63,12 @@ class productos (models.Model):
     def __str__(self):
         return self.producto 
 
-
-
 class cliente(models.Model):
     username = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
-    cedula = models.CharField(max_length=9, unique=True) 
+    cedula = models.CharField(max_length=10, unique=True) 
     direcion = models.CharField(max_length=100)
     telefono = models.CharField(max_length=10)
     celular = models.CharField(max_length=10, unique=True)
@@ -89,7 +86,7 @@ class Productor(models.Model):
     password = models.CharField(max_length=100)
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
-    cedula = models.CharField(max_length=9, unique=True) 
+    cedula = models.CharField(max_length=10, unique=True) 
     direcion = models.CharField(max_length=100)
     telefono = models.CharField(max_length=10)
     celular = models.CharField(max_length=10, unique=True)
@@ -101,8 +98,6 @@ class Productor(models.Model):
 
     def __str__(self):
             return self.nombres
-    
-
 
 class frutas (models.Model):
     producto = models.CharField(max_length=100,choices=PRODUCTS_FRUTAS)
@@ -110,7 +105,7 @@ class frutas (models.Model):
     precio_kgs = models.CharField(max_length=100)
     precio_total = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=50, choices=CIUDADS)
-    fecha_disponible = models.DateField(verbose_name='fecha disponible')
+    #fecha_disponible = models.DateField(verbose_name='fecha disponible')
     #fecha_disponible = models.CharField(verbose_name='fecha disponible')
     ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
     descripcion = models.CharField(max_length=254)
@@ -128,7 +123,7 @@ class verduras (models.Model):
     precio_kgs = models.CharField(max_length=100)
     precio_total = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=50, choices=CIUDADS)
-    fecha_disponible = models.DateField(verbose_name='fecha disponible')
+    #fecha_disponible = models.DateField(verbose_name='fecha disponible')
     #fecha_disponible = models.CharField(verbose_name='fecha disponible')
     ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
     descripcion = models.CharField(max_length=254)
@@ -146,7 +141,7 @@ class leguminosas (models.Model):
     precio_kgs = models.CharField(max_length=100)
     precio_total = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=50, choices=CIUDADS)
-    fecha_disponible = models.DateField(verbose_name='fecha disponible')
+    #fecha_disponible = models.DateField(verbose_name='fecha disponible')
     #fecha_disponible = models.CharField(verbose_name='fecha disponible')
     ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
     descripcion = models.CharField(max_length=254)
@@ -164,7 +159,7 @@ class granos (models.Model):
     precio_kgs = models.CharField(max_length=100)
     precio_total = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=50, choices=CIUDADS)
-    fecha_disponible = models.DateField(verbose_name='fecha disponible')
+    #fecha_disponible = models.DateField(verbose_name='fecha disponible')
     #fecha_disponible = models.CharField(verbose_name='fecha disponible')
     ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
     descripcion = models.CharField(max_length=254)
@@ -182,7 +177,7 @@ class carnes (models.Model):
     precio_kgs = models.CharField(max_length=100)
     precio_total = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=50, choices=CIUDADS)
-    fecha_disponible = models.DateField(verbose_name='fecha disponible')
+    #fecha_disponible = models.DateField(verbose_name='fecha disponible')
     #fecha_disponible = models.CharField(verbose_name='fecha disponible')
     ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
     descripcion = models.CharField(max_length=254)
@@ -200,7 +195,7 @@ class abarrotes (models.Model):
     precio_kgs = models.CharField(max_length=100)
     precio_total = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=50, choices=CIUDADS)
-    fecha_disponible = models.DateField(verbose_name='fecha disponible')
+    #fecha_disponible = models.DateField(verbose_name='fecha disponible')
     #fecha_disponible = models.CharField(verbose_name='fecha disponible')
     ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
     descripcion = models.CharField(max_length=254)
@@ -218,7 +213,7 @@ class lacteos (models.Model):
     precio_kgs = models.CharField(max_length=100)
     precio_total = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=50, choices=CIUDADS)
-    fecha_disponible = models.DateField(verbose_name='fecha disponible')
+    #fecha_disponible = models.DateField(verbose_name='fecha disponible')
     #fecha_disponible = models.CharField(verbose_name='fecha disponible')
     ofrece_transporte = models.CharField(max_length=254, choices=SI_NO)
     descripcion = models.CharField(max_length=254)
@@ -246,14 +241,12 @@ class vehiculo (models.Model):
         def __str__(self):
             return self.placa
                         
-                        
-
-class conductor(models.Model):
+class conductor (models.Model):
     username = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
-    cedula = models.CharField(max_length=9, unique=True) 
+    cedula = models.CharField(max_length=10, unique=True) 
     direcion = models.CharField(max_length=100)
     telefono = models.CharField(max_length=10)
     celular = models.CharField(max_length=10, unique=True)
@@ -266,4 +259,4 @@ class conductor(models.Model):
         db_table ='conductor'
                     
         def __str__(self):
-            return self.nombres 
+            return self.username 

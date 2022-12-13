@@ -61,23 +61,66 @@ LEGUMINOSAS_LIST={
 
 }
 GRANOS_LIST={
-
+('almendras' , 'almendras'),
+('avellana' , 'avellana'),
+('nuez' , 'nuez'),
+('quinua' , 'quinua'),
+('mani' , 'mani'),
+('amaranto' , 'amaranto'),
+('trigoo' , 'trigoo')
 
 }
 
 CARNES_LIST={
-
+('pecho' , 'pecho'),
+('solomito' , 'solomito'),
+('punta_de_anca' , 'punta_de_anca'),
+('sobre_barriga' , 'sobre_barriga'),
+('costillas_res' , 'costillas_res'),
+('cadera_res' , 'cadera_res'),
+('carne_pollo' , 'carne_pollo'),
+('pescado' , 'pescado'),
+('carne_cerdo' , 'carne_cerdo'),
+('carne_térnera' , 'carne_térnera'),
+('carne_vaca' , 'carne_vaca')
 
 }
 
 ABARROTES_LIST={
-
+( 'compota' , 'compota' ),
+( 'aceite' , 'aceite' ),
+( 'gelatina' , 'gelatina' ),
+( 'sal' , 'sal' ),
+( 'vinagre' , 'vinagre' ),
+( 'miel' , 'miel' ),
+( 'mayonesa' , 'mayonesa' ),
 
 }
 
 LACTEOS_LIST={
-
+( 'yogur' , 'yogur' ),
+( 'kumis' , 'kumis' ),
+( 'huevosAAA' , 'huevosAAA' ),
+( 'huevos_AA' , 'huevos_AA' ),
+( 'huevos_codorniz' , 'huevos_codorniz' ),
+( 'Huevosgallinas_en_jaulas' , 'Huevosgallinas_en_jaulas' ),
+( 'Huevosgallina_campera' , 'Huevosgallina_campera' )
     
+}
+
+PESCADOS_LIST= {
+( 'atunn' , 'atunn' ),
+( 'bagre' , 'bagre' ),
+( 'mojarra' , 'mojarra' ),
+( 'merluza' , 'merluza' ),
+( 'salmón' , 'salmón' ),
+( 'tilapia' , 'tilapia' ),
+( 'trucha' , 'trucha' ),
+( 'langosta' , 'langosta' ),
+( 'camaron' , 'camaron' ),
+( 'atun' , 'atun' ),
+( 'sardinas' , 'sardinas' )
+
 }
 
 

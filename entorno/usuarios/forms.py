@@ -30,6 +30,36 @@ class form_registro_frutas(forms.ModelForm):
         model = frutas
         fields = '__all__'  
 
+class form_registro_verduras(forms.ModelForm):
+    class Meta:
+        model = verduras
+        fields = '__all__'
+
+class form_registro_leguminosas(forms.ModelForm):
+    class Meta:
+        model = leguminosas
+        fields = '__all__'
+
+class form_registro_granos(forms.ModelForm):
+    class Meta:
+        model = granos
+        fields = '__all__'
+
+class form_registro_carnes(forms.ModelForm):
+    class Meta:
+        model = carnes
+        fields = '__all__'       
+
+class form_registro_abarrotes(forms.ModelForm):
+    class Meta:
+        model = abarrotes
+        fields = '__all__'       
+
+class form_registro_lacteos(forms.ModelForm):
+    class Meta:
+        model = lacteos
+        fields = '__all__' 
+
 class add_conductor(forms.ModelForm):
     class Meta:
         model = conductor
